@@ -1,0 +1,13 @@
+import numpy as np
+import pandas as pd
+def get_entries_exits(path):         #path should be a str
+    data=pd.read_csv(path)
+    station_slice=data.loc[(data['LINENAME']=="1") & (data['STATION']=='V.CORTLANDT PK')]
+    entries=np.array(station_slice['ENTRIES'])
+    exits=np.array(station_slice.iloc[:,11])
+    num_entries=np.diff(entries)
+    num_exits=np.diff(exits)
+    return num_entries,num_exits
+
+path=                       #define path here
+get_entries_exits(path)
